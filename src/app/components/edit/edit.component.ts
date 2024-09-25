@@ -22,8 +22,8 @@ export class EditComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private fruitService: FruitService) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      id: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      id: ['', [Validators.required, Validators.pattern('[0-9]+')]],
       family: ['', Validators.required],
       order: ['', Validators.required],
       genus: ['', Validators.required],
@@ -45,6 +45,8 @@ export class EditComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       console.log('Form submitted', this.form.value);
+    } else {
+      console.log('Form error');
     }
   }
 }

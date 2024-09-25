@@ -18,14 +18,21 @@ export class CreateComponent {
   constructor() {}
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    id: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    id: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[0-9]+'),
+    ]),
     family: new FormControl('', [Validators.required]),
     order: new FormControl('', [Validators.required]),
     genus: new FormControl('', [Validators.required]),
   });
 
   onSubmit() {
-    console.log(this.form.valid);
+    if (this.form.valid) {
+      console.log('Form submitted', this.form.value);
+    } else {
+      console.log('Form error');
+    }
   }
 }

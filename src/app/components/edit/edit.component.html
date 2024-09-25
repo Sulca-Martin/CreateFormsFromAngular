@@ -1,15 +1,93 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <!--<div
-      *ngIf="form.get('name').hasError('required') && form.get('name').touched"
+<h2 class="ps-3">Edit Fruit</h2>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="col-6 p-3 m-3 bg-dark text-white rounded"
+>
+  <div class="mb-3">
+    <label for="id" class="form-label">Id:</label>
+    <input formControlName="id" id="id" name="id" class="form-control" />
+    <div
+      *ngIf="form.get('id')?.hasError('required') && form.get('id')?.touched"
     >
-      <span> Name is required </span>
-    </div>-->
-  <input formControlName="name" />
+      <span class="text-danger">* Id is required </span>
+    </div>
+    <div *ngIf="form.get('id')?.hasError('pattern') && form.get('id')?.touched">
+      <span class="text-danger">* Id number is required </span>
+    </div>
+  </div>
 
-  <input formControlName="id" />
-  <input formControlName="family" />
-  <input formControlName="order" />
-  <input formControlName="genus" />
+  <div class="mb-3">
+    <label for="name" class="form-label">Name:</label>
+    <input formControlName="name" id="name" name="name" class="form-control" />
+    <div
+      *ngIf="
+        form.get('name')?.hasError('required') && form.get('name')?.touched
+      "
+    >
+      <span class="text-danger">* Name is required </span>
+    </div>
+    <div
+      *ngIf="
+        form.get('name')?.hasError('minlength') && form.get('name')?.touched
+      "
+    >
+      <span class="text-danger">* Minimum of 3 letters required for name </span>
+    </div>
+  </div>
 
-  <button type="submit">Guardar</button>
+  <div class="mb-3">
+    <label for="family" class="form-label">Family:</label>
+    <input
+      formControlName="family"
+      id="family"
+      name="family"
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        form.get('family')?.hasError('required') && form.get('family')?.touched
+      "
+    >
+      <span class="text-danger">* Family is required </span>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="order" class="form-label">Order:</label>
+    <input
+      formControlName="order"
+      id="order"
+      name="order"
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        form.get('order')?.hasError('required') && form.get('order')?.touched
+      "
+    >
+      <span class="text-danger">* Order is required </span>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="genus" class="form-label">Genus:</label>
+    <input
+      formControlName="genus"
+      id="genus"
+      name="genus"
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        form.get('genus')?.hasError('required') && form.get('genus')?.touched
+      "
+    >
+      <span class="text-danger">* Genus is required </span>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+    Submit
+  </button>
 </form>
