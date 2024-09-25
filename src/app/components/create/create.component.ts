@@ -1,17 +1,21 @@
+import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FruitService } from '../../services/fruit.service';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [FormGroup],
-  providers: [FruitService],
+  imports: [ReactiveFormsModule, CommonModule, NgIf], //Solamente Modulos (Reactive, common)
   templateUrl: './create.component.html',
   styleUrl: './create.component.css',
 })
 export class CreateComponent {
-  constructor(private fruitService: FruitService) {}
+  constructor() {}
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -19,8 +23,8 @@ export class CreateComponent {
     family: new FormControl('', [Validators.required]),
     order: new FormControl('', [Validators.required]),
     genus: new FormControl('', [Validators.required]),
-    //nutritions: new FormControl ('',[]),
   });
+
   onSubmit() {
     console.log(this.form.valid);
   }

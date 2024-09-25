@@ -10,19 +10,7 @@ export class FruitService {
 
   constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<any> {
+  getFruit(): Observable<any> {
     return this.http.get(this.apiUrl);
-  }
-
-  getPostsData() {
-    this.http.get(this.apiUrl).subscribe(
-      (posts) => {
-        return posts;
-      },
-      (error) => {
-        console.error(error);
-        return [];
-      }
-    );
   }
 }

@@ -1,5 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!--<div
+    *ngIf="form.get('name').hasError('required') && form.get('name').touched"
+  >
+    <span> Name is required </span>
+  </div>-->
   <input formControlName="name" />
+
   <input formControlName="id" />
   <input formControlName="family" />
   <input formControlName="order" />
